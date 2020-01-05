@@ -20,8 +20,10 @@ public class MychatServerHandler extends SimpleChannelInboundHandler<String> {
         channelGroup.forEach(ch -> {
             if(channel != ch){
                 ch.writeAndFlush(channel.remoteAddress() + "send message:" + msg);
+                System.out.println(channel.remoteAddress() + "send message:" + msg);
             }else{
                 ch.writeAndFlush("myself :" + msg + "\n");
+                System.out.println("myself :" + msg + "\n");
             }
         });
 
