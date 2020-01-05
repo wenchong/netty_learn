@@ -33,7 +33,7 @@ public class MychatServerHandler extends SimpleChannelInboundHandler<String> {
        Channel channel = ctx.channel();
 
        channelGroup.writeAndFlush("[服务器]-" + channel.remoteAddress() + "加入");
-
+        System.out.println(channel.remoteAddress() + "加入");
        channelGroup.add(channel);
 
     }
