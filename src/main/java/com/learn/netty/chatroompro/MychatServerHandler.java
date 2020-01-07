@@ -24,7 +24,7 @@ public class MychatServerHandler extends ChannelInboundHandlerAdapter {
                     break;
 
             }
-            System.out.println(ctx.channel().remoteAddress() + "超时事件");
+            System.out.println(ctx.channel().remoteAddress() + "超时事件" + eventType);
             ctx.channel().close();
 
         }

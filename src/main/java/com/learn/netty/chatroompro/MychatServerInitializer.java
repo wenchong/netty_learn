@@ -13,6 +13,6 @@ public class MychatServerInitializer extends ChannelInitializer<SocketChannel> {
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline channelPipeline = ch.pipeline();
         channelPipeline.addLast(new IdleStateHandler(5,7,10, TimeUnit.SECONDS));
-        channelPipeline.addLast(null);
+        channelPipeline.addLast(new MychatServerHandler());
     }
 }
