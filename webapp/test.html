@@ -49,8 +49,8 @@
 
 <form onsubmit="return false;">
 
-    <textarea name="massage" style="width:400px;height:400px"></textarea>
-    <input type="button" onclick="">
+    <textarea name="message" style="width:400px;height:400px"></textarea>
+    <input type="button" onclick="send(this.form.message.value)" value="发送数据">
     <h3>服务端输出</h3>
     <textarea id="responseText" style="width:400px;height:400px"></textarea>
     <input type="button" onclick="javascript:document.getElementById('responseText').value=''">
