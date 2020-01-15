@@ -10,7 +10,7 @@ public class NioTest {
         IntBuffer buffer = IntBuffer.allocate(10);
         System.out.println("capacity:" + buffer.capacity());
 
-        for (int i = 0; i < buffer.capacity(); ++i){
+        for (int i = 0; i < 5; ++i){
             int randomNumber = new SecureRandom().nextInt(20);
             buffer.put(randomNumber);
 
