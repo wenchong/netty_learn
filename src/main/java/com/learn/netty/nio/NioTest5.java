@@ -4,6 +4,10 @@ import java.nio.ByteBuffer;
 
 public class NioTest5 {
 
+    /***
+     * bytebuffer类型化方法
+     * @param args
+     */
     public static void main(String[] args) {
         ByteBuffer buffer = ByteBuffer.allocate(64);
         buffer.putInt(15);
