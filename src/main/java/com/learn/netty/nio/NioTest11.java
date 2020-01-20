@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 /***
  * buffer scttering gathering
+ * 执行 nc localhost 8899
  */
 public class NioTest11 {
 
