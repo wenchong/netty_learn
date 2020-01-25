@@ -1,5 +1,7 @@
 package com.learn.netty.nio;
 
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
+
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.nio.ByteBuffer;
@@ -54,6 +56,24 @@ public class NioServer {
                                 Charset charset = Charset.forName("utf-8");
                                 String receivemsg = String.valueOf(charset.decode(readBuffer).array());
                                 System.out.println(client + " : " + receivemsg);
+
+                                String sendKey = null;
+                                for(Map.Entry<String,SocketChannel> entry : clientMap.entrySet()){
+                                    if(client == entry.getValue()){
+                                        sendKey = entry.getKey();
+                                        break;
+                                    }
+                                }
+                                for (Map.Entry<String,SocketChannel> entry : clientMap.entrySet()){
+                                    SocketChannel value = entry.getValue();
+
+                                    ByteBuffer writebuffer = ByteBuffer.allocate(1024);
+                                    writebuffer.put((sendKey + ": " + receivemsg).getBytes());
+                                    writebuffer.flip();
+
+                                    value.write(writebuffer);
+
+                                }
 
 //                                client.write(readBuffer);
 
