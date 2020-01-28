@@ -6,6 +6,7 @@ import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
+import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -50,7 +51,7 @@ public class NioClient {
                                         String sendMessage = br.readLine();
                                         writeBuffer.put(sendMessage.getBytes());
                                         writeBuffer.flip();
-                                        client.write(writeBuffer);
+                                        client.write(writeBuffer);//写给服务端
 
                                     }catch (Exception ex){
                                         ex.printStackTrace();
@@ -62,10 +63,26 @@ public class NioClient {
 
                         }
 
+                        client.register(selector,SelectionKey.OP_READ);
+
+                    }else if (selectionKey.isReadable()){
+                        SocketChannel client = (SocketChannel)selectionKey.channel();
+                        ByteBuffer readbuffer = ByteBuffer.allocate(1024);
+                        int count = client.read(readbuffer);//从服务端读下来
+
+                        if(count > 0){
+                            String msg = new String(readbuffer.array(),0,count);
+
+                            System.out.println(msg);
+
+
+                        }
+
                     }
 
 
                 }
+                keySet.clear();
 
             }
 
