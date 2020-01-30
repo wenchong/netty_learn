@@ -1,0 +1,52 @@
+syntax="proto2";
+
+package com.learn.protobuf;
+option optimize_for=SPEED;
+option java_package="com.learn.protobuf3";
+option java_outer_classname="PersonDataInfo";
+
+message MyMessage{
+
+    enum DataType{
+        PersonType = 1;
+        Person2Type = 2;
+        Person3Type = 3;
+
+    }
+
+    required DataType data_type = 1;
+
+    oneof dataBody {
+        Person person = 2;
+        Person2 person2 = 3;
+        Person3 person3 = 4;
+
+    }
+
+}
+
+message Person {
+    required string name = 1;
+
+    optional int32 age = 11;
+
+    optional string address = 111;
+};
+
+message Person2 {
+    required string name = 2;
+
+    optional int32 age = 22;
+
+    optional string address = 222;
+};
+
+message Person3 {
+    required string name = 3;
+
+    optional int32 age = 33;
+
+    optional string address = 333;
+};
+
+

@@ -1,0 +1,16 @@
+syntax="proto2";
+
+package com.learn.protobuf;
+option optimize_for=SPEED;
+option java_package="com.learn.protobuf2";
+option java_outer_classname="MyDataInfo";
+
+message Student {
+    required string name = 1;
+
+    optional int32 age = 2;
+
+    optional string address = 3;
+};
+
+
